@@ -15,6 +15,13 @@ angular.module('test')
             });
         }
 
+        $scope.delete = function(id) {
+        	test.delete(id, function() {
+                $scope.load();
+            });
+        }
+
+     
         $scope.form = {};
 
         $scope.load();
