@@ -1,17 +1,44 @@
-<h3>List of tests</h3>
-<div ng-repeat="item in list">
-    <a href="/#/{{item.id}}">{{item.data}}</a>
-</div>
 
-<h3>New test</h3>
-<div>
-    <div>
-        <label for="id">id</label>
-        <input id="id" ng-model="form.id"/>
-    </div>
-    <div>
-        <label for="data">data</label>
-        <input id="data" ng-model="form.data"/>
-    </div>
-    <button ng-click="save()">Save</button>
+<div class="eight columns">
+	<h3>Lista de libros</h3>
+	<table class="tabla">
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Autor</th>
+				<th>Eliminar</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list | orderBy:'autor'">
+				<td><a href="/#/{{item.id}}">{{item.nombre}}</a></td>
+				<td>{{item.autor}}</td>
+				<td><button ng-click="delete(item.id)">Eliminar</button></td>
+			</tr>
+		</tbody>
+	</table>
 </div>
+<!-- <td><button ng-click="add()">Insertar Libro</button></td> -->
+
+<h3>Nuevo Libro</h3>
+<form name="libro">
+	<div>
+		<div>
+			<label for="nombre">Nombre</label> <input id="nombre"
+				ng-model="form.nombre" required />
+		</div>
+		<div>
+			<label for="autor">autor</label> <input id="autor"
+				ng-model="form.autor" required />
+		</div>
+		<div>
+			<label for="anio">anio</label> <input id="anio" ng-model="form.anio"
+				required />
+		</div>
+		<div>
+			<label for="genero">genero</label> <input id="genero"
+				ng-model="form.genero" required />
+		</div>
+		<button ng-click="libro.$valid && save()">Guardar</button>
+	</div>
+</form>

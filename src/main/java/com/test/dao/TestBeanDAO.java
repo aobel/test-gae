@@ -1,7 +1,7 @@
 package com.test.dao;
 
 import com.googlecode.objectify.ObjectifyService;
-import com.test.data.TestBean;
+import com.test.data.LibroBean;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -16,25 +16,25 @@ public class TestBeanDAO {
     /**
      * @return list of test beans
      */
-    public List<TestBean> list() {
+    public List<LibroBean> list() {
         LOGGER.info("Retrieving list of beans");
-        return ObjectifyService.ofy().load().type(TestBean.class).list();
+        return ObjectifyService.ofy().load().type(LibroBean.class).list();
     }
 
     /**
      * @param id
      * @return test bean with given id
      */
-    public TestBean get(Long id) {
+    public LibroBean get(Long id) {
         LOGGER.info("Retrieving bean " + id);
-        return ObjectifyService.ofy().load().type(TestBean.class).id(id).now();
+        return ObjectifyService.ofy().load().type(LibroBean.class).id(id).now();
     }
 
     /**
      * Saves given bean
      * @param bean
      */
-    public void save(TestBean bean) {
+    public void save(LibroBean bean) {
         if (bean == null) {
             throw new IllegalArgumentException("null test object");
         }
@@ -46,11 +46,12 @@ public class TestBeanDAO {
      * Deletes given bean
      * @param bean
      */
-    public void delete(TestBean bean) {
+    public void delete(LibroBean bean) {
         if (bean == null) {
             throw new IllegalArgumentException("null test object");
         }
         LOGGER.info("Deleting bean " + bean.getId());
         ObjectifyService.ofy().delete().entity(bean);
     }
+
 }
