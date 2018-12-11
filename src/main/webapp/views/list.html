@@ -1,5 +1,14 @@
+<h3>Buscar</h3>
+<form name="busqueda">
+		<div>
+			<label for="text">Texto de busqueda:</label>
+			 <input id="text" ng-model="form.text" required />
+			<button ng-click="search(form.text)">Buscar</button>
+		</div>
+</form>
 
-<div class="eight columns">
+
+<div class="listado">
 	<h3>Lista de libros</h3>
 	<table class="tabla">
 		<thead>
@@ -18,7 +27,7 @@
 		</tbody>
 	</table>
 </div>
-<!-- <td><button ng-click="add()">Insertar Libro</button></td> -->
+
 
 <h3>Nuevo Libro</h3>
 <form name="libro">

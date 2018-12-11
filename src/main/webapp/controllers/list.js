@@ -21,6 +21,11 @@ angular.module('test')
             });
         }
 
+        $scope.search = function(text) {
+        	test.search(text, function(list) {
+                $scope.list = list.data;
+            });
+        }
      
         $scope.form = {};
 

@@ -6,6 +6,8 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javax.ws.rs.*;
@@ -66,7 +68,23 @@ public class TestResource {
         return Response.ok().build();
     }
     
-    
-
+  
+    @GET
+    @Path("/search/{text}")
+    @ApiOperation("list test objects")
+    public Response get(@PathParam("text") String text) {
+    	//Pasar codigo a DAO
+    	LOGGER.info("Entra en Buscar");
+    	List<LibroBean> resultado = this.testBeanDAO.list();
+    	List<LibroBean> selecionados = new ArrayList<LibroBean>();
+    	LOGGER.info(text);
+    	for (LibroBean element : resultado) {
+    		LOGGER.info(element.toSearch());
+    		if (element.toSearch().contains(text)) {
+    			selecionados.add(element);
+    		}
+    	}
+    	return Response.ok(selecionados).build();
+    }
     
 }

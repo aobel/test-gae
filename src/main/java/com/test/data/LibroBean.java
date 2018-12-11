@@ -77,5 +77,9 @@ public class LibroBean {
 		return "Libro [id=" + id + ", nombre=" + nombre + ", autor=" + autor + ", anio=" + anio + ", genero="
 				+ genero + "]";
 	}
+	
+	public String toSearch() {
+		return id +"|"+ nombre +"|"+ autor +"|"+ anio +"|"+ genero;
+	}
 
 }

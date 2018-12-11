@@ -15,6 +15,9 @@ angular.module('test')
             delete: function (id, success) {
                 return $http.delete("/rest/test/" + id).then(success);
             },
+            search: function (text, success) {
+                return $http.get("/rest/test/search/" + text).then(success);
+            }
   
         };
     });
