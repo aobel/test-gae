@@ -55,7 +55,7 @@ public class TestBeanDAO {
         ObjectifyService.ofy().delete().entity(bean);
     }
     /**
-     * Deletes given bean
+     * Buscar given bean
      * @param bean
      */
     public List<LibroBean> buscar(String text) {
