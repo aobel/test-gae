@@ -11,7 +11,9 @@ angular.module('test')
 
         $scope.save = function() {
             test.save($scope.form, function() {
-                $scope.load();
+                $scope.form = {};
+            	$scope.load();
+                
             });
         }
 
