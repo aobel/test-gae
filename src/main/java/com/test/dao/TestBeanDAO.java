@@ -59,14 +59,10 @@ public class TestBeanDAO {
      * @param bean
      */
     public List<LibroBean> buscar(String text) {
-        LOGGER.info("Retrieving list of beans");
-      //Pasar codigo a DAO
-    	LOGGER.info("Entra en Buscar");
+        LOGGER.info("Retrieving search beans");
     	List<LibroBean> resultado = ObjectifyService.ofy().load().type(LibroBean.class).list();
     	List<LibroBean> selecionados = new ArrayList<LibroBean>();
-    	LOGGER.info(text);
     	for (LibroBean element : resultado) {
-    		LOGGER.info(element.toSearch());
     		if (element.toSearch().contains(text)) {
     			selecionados.add(element);
     		}
