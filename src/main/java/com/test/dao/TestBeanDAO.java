@@ -54,6 +54,7 @@ public class TestBeanDAO {
         LOGGER.info("Deleting bean " + bean.getId());
         ObjectifyService.ofy().delete().entity(bean);
     }
+    
     /**
      * Buscar given bean
      * @param bean
@@ -63,8 +64,9 @@ public class TestBeanDAO {
     	List<LibroBean> resultado = ObjectifyService.ofy().load().type(LibroBean.class).list();
     	List<LibroBean> selecionados = new ArrayList<LibroBean>();
     	for (LibroBean element : resultado) {
-    		if (element.toSearch().contains(text)) {
+    		if (element.toSearch().toUpperCase().contains(text.toUpperCase())) {
     			selecionados.add(element);
+    			LOGGER.info(element.toSearch());
     		}
     	}
         return selecionados;
