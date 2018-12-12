@@ -1,55 +1,79 @@
-<button ng-click="load()">Limpiar</button>
+<div class="contenedor">
 
-<h3>Buscar</h3>
-<form name="busqueda">
-		<div>
-			<label for="text">Texto de busqueda:</label>
-			 <input id="text" ng-model="form.text" required />
-			<button ng-click="search(form.text)">Buscar</button>
+<div class="buscar">
+	<h2>Buscar</h2>
+	<form name="busqueda">
+		<div class="row">
+			<div class="col-25">
+				<label for="text">Texto de busqueda:</label>
+			</div>
+			<div class="col-75">
+				<input id="text" ng-model="form.text" type="text" required />
+			</div>
 		</div>
-</form>
-
-
-<div class="listado">
-	<h3>Lista de libros</h3>
-	<table class="tabla">
-		<thead>
-			<tr>
-				<th>Nombre</th>
-				<th>Autor</th>
-				<th>Eliminar</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="item in list | orderBy:'autor'">
-				<td><a href="/#/{{item.id}}">{{item.nombre}}</a></td>
-				<td>{{item.autor}}</td>
-				<td><button ng-click="delete(item.id)">Eliminar</button></td>
-			</tr>
-		</tbody>
-	</table>
+			<button class="col-50-left" ng-click="busqueda.$valid && search(form.text)">Buscar</button>
+			<button class="col-50-right" ng-click="load()">Limpiar</button>
+	</form>
 </div>
 
-
-<h3>Nuevo Libro</h3>
-<form name="libro">
-	<div>
-		<div>
-			<label for="nombre">Nombre</label> <input id="nombre"
-				ng-model="form.nombre" required />
-		</div>
-		<div>
-			<label for="autor">autor</label> <input id="autor"
-				ng-model="form.autor" required />
-		</div>
-		<div>
-			<label for="anio">anio</label> <input id="anio" ng-model="form.anio"
-				required />
-		</div>
-		<div>
-			<label for="genero">genero</label> <input id="genero"
-				ng-model="form.genero" required />
-		</div>
-		<button ng-click="libro.$valid && save()">Guardar</button>
+	<div class="listado col-50-right">
+		<h2>Lista de libros</h2>
+		<table class="tabla">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Autor</th>
+					<th>Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in list | orderBy:'autor'">
+					<td><a href="/#/{{item.id}}">{{item.nombre}}</a></td>
+					<td>{{item.autor}}</td>
+					<td><button ng-click="delete(item.id)">Eliminar</button></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-</form>
+
+
+
+	<div class="formulario col-50-left">
+		<h2>Nuevo Libro</h2>
+		<form name="libro">
+			<div class="row">
+				<div class="col-25">
+					<label for="nombre">Nombre:</label>
+				</div>
+				<div class="col-75">
+					<input id="nombre" ng-model="form.nombre" type="text" required />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-25">
+					<label for="autor">Autor:</label>
+				</div>
+				<div class="col-75">
+					<input id="autor" ng-model="form.autor" type="text" required />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-25">
+					<label for="anio">A&ntilde;o:</label>
+				</div>
+				<div class="col-75">
+					<input id="anio" ng-model="form.anio" type="number" required />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-25">
+					<label for="genero">Genero:</label>
+				</div>
+				<div class="col-75">
+					<input id="genero" ng-model="form.genero" type="text" required />
+				</div>
+			</div>
+			<button ng-click="libro.$valid && save()">Guardar</button>
+		</form>
+	</div>
+</div>
