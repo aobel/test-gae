@@ -3,6 +3,7 @@ package com.test.dao;
 import com.googlecode.objectify.ObjectifyService;
 import com.test.data.LibroBean;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -53,5 +54,24 @@ public class TestBeanDAO {
         LOGGER.info("Deleting bean " + bean.getId());
         ObjectifyService.ofy().delete().entity(bean);
     }
-
+    /**
+     * Deletes given bean
+     * @param bean
+     */
+    public List<LibroBean> buscar(String text) {
+        LOGGER.info("Retrieving list of beans");
+      //Pasar codigo a DAO
+    	LOGGER.info("Entra en Buscar");
+    	List<LibroBean> resultado = ObjectifyService.ofy().load().type(LibroBean.class).list();
+    	List<LibroBean> selecionados = new ArrayList<LibroBean>();
+    	LOGGER.info(text);
+    	for (LibroBean element : resultado) {
+    		LOGGER.info(element.toSearch());
+    		if (element.toSearch().contains(text)) {
+    			selecionados.add(element);
+    		}
+    	}
+        return selecionados;
+    }
+    
 }

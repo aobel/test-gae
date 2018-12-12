@@ -27,7 +27,6 @@ public class TestResource {
     @GET
     @ApiOperation("list test objects")
     public Response list() {
-    	LOGGER.info("Entra en listado");
         return Response.ok(this.testBeanDAO.list()).build();
     }
 
@@ -40,7 +39,6 @@ public class TestResource {
         	LOGGER.info("NO GET BEAN NULL");
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-    	LOGGER.info("Entra en GET: "+bean.toString());
         return Response.ok(bean).build();
     }
     
@@ -48,7 +46,6 @@ public class TestResource {
     @Consumes("application/json;charset=utf-8")
     @ApiOperation("save test object")
     public Response save(LibroBean bean) {
-    	LOGGER.info("Entra en SAVE: "+bean.toString());
         this.testBeanDAO.save(bean);
         return Response.ok().build();
     }
@@ -57,14 +54,11 @@ public class TestResource {
     @Path("/{id}")
     @ApiOperation("delete book object")
     public Response delete(@ApiParam("test ID") @PathParam("id") Long id) {
-    	LOGGER.info("Entra en DELETE");
         LibroBean bean = this.testBeanDAO.get(id);
         if (bean == null) {
-        	LOGGER.info("NO DELETE BEAN NULL");
             return Response.status(Response.Status.NOT_FOUND).build();
         }
         this.testBeanDAO.delete(bean);
-    	LOGGER.info("DELETE: "+bean.toString());
         return Response.ok().build();
     }
     
@@ -73,18 +67,7 @@ public class TestResource {
     @Path("/search/{text}")
     @ApiOperation("list test objects")
     public Response get(@PathParam("text") String text) {
-    	//Pasar codigo a DAO
-    	LOGGER.info("Entra en Buscar");
-    	List<LibroBean> resultado = this.testBeanDAO.list();
-    	List<LibroBean> selecionados = new ArrayList<LibroBean>();
-    	LOGGER.info(text);
-    	for (LibroBean element : resultado) {
-    		LOGGER.info(element.toSearch());
-    		if (element.toSearch().contains(text)) {
-    			selecionados.add(element);
-    		}
-    	}
-    	return Response.ok(selecionados).build();
+    	return Response.ok(this.testBeanDAO.buscar(text)).build();
     }
     
 }
