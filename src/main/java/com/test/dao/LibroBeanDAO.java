@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-/**
- * @author Alejandro Aranda
- */
 public class LibroBeanDAO {
 
     private static final Logger LOGGER = Logger.getLogger(LibroBeanDAO.class.getName());
@@ -56,8 +53,9 @@ public class LibroBeanDAO {
     }
     
     /**
-     * Buscar given bean
-     * @param bean
+     * Search given bean
+     * @param text
+     * @return List of filter beans
      */
     public List<LibroBean> buscar(String text) {
         LOGGER.info("Retrieving search beans");

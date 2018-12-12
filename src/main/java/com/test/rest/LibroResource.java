@@ -13,28 +13,28 @@ import java.util.logging.Logger;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
-@Path("/test")
+@Path("/libro")
 @Produces("application/json;charset=utf-8")
-@Api(value = "test", description = "Test service")
+@Api(value = "libro", description = "Servicio Libro")
 public class LibroResource {
 	private final static Logger LOGGER = Logger.getLogger("bitacora.subnivel.Control");
-    private LibroBeanDAO testBeanDAO;
+    private LibroBeanDAO libroBeanDAO;
 
     public LibroResource() {
-        this.testBeanDAO = new LibroBeanDAO();
+        this.libroBeanDAO = new LibroBeanDAO();
     }
 
     @GET
-    @ApiOperation("list test objects")
+    @ApiOperation("Listar Libros")
     public Response list() {
-        return Response.ok(this.testBeanDAO.list()).build();
+        return Response.ok(this.libroBeanDAO.list()).build();
     }
 
     @GET
     @Path("/{id}")
-    @ApiOperation("get test object")
+    @ApiOperation("Obtener Libro")
     public Response get(@PathParam("id") Long id) {
-        LibroBean bean = this.testBeanDAO.get(id);
+        LibroBean bean = this.libroBeanDAO.get(id);
         if (bean == null) {
         	LOGGER.info("NO GET BEAN NULL");
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -44,30 +44,30 @@ public class LibroResource {
     
     @POST
     @Consumes("application/json;charset=utf-8")
-    @ApiOperation("save test object")
+    @ApiOperation("Guardar Libro")
     public Response save(LibroBean bean) {
-        this.testBeanDAO.save(bean);
+        this.libroBeanDAO.save(bean);
         return Response.ok().build();
     }
 
     @DELETE
     @Path("/{id}")
-    @ApiOperation("delete book object")
+    @ApiOperation("Eliminar Libro")
     public Response delete(@ApiParam("test ID") @PathParam("id") Long id) {
-        LibroBean bean = this.testBeanDAO.get(id);
+        LibroBean bean = this.libroBeanDAO.get(id);
         if (bean == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-        this.testBeanDAO.delete(bean);
+        this.libroBeanDAO.delete(bean);
         return Response.ok().build();
     }
     
   
     @GET
     @Path("/search/{text}")
-    @ApiOperation("list test objects")
+    @ApiOperation("Buscar Libros")
     public Response get(@PathParam("text") String text) {
-    	return Response.ok(this.testBeanDAO.buscar(text)).build();
+    	return Response.ok(this.libroBeanDAO.buscar(text)).build();
     }
     
 }
