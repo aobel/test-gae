@@ -1,6 +1,6 @@
 package com.test.rest;
 
-import com.test.dao.TestBeanDAO;
+import com.test.dao.LibroBeanDAO;
 import com.test.data.LibroBean;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
@@ -16,12 +16,12 @@ import javax.ws.rs.core.Response;
 @Path("/test")
 @Produces("application/json;charset=utf-8")
 @Api(value = "test", description = "Test service")
-public class TestResource {
+public class LibroResource {
 	private final static Logger LOGGER = Logger.getLogger("bitacora.subnivel.Control");
-    private TestBeanDAO testBeanDAO;
+    private LibroBeanDAO testBeanDAO;
 
-    public TestResource() {
-        this.testBeanDAO = new TestBeanDAO();
+    public LibroResource() {
+        this.testBeanDAO = new LibroBeanDAO();
     }
 
     @GET

@@ -10,9 +10,9 @@ import java.util.logging.Logger;
 /**
  * @author Alejandro Aranda
  */
-public class TestBeanDAO {
+public class LibroBeanDAO {
 
-    private static final Logger LOGGER = Logger.getLogger(TestBeanDAO.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(LibroBeanDAO.class.getName());
 
     /**
      * @return list of test beans
